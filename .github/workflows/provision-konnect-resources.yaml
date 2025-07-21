@@ -23,15 +23,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract team name from git repo
-        run: |
-          REPO_NAME=$(basename $(git rev-parse --show-toplevel))
-          TEAM_NAME="${REPO_NAME#team-}"
-          TEAM_NAME="${TEAM_NAME%-repo}"
-          echo "TEAM_NAME=$TEAM_NAME" >> $GITHUB_ENV
-          echo "Repository name: $REPO_NAME"
-          echo "Team name: $TEAM_NAME"
-
       - name: Provision Konnect Resources
         uses: ./platform-actions/provision-konnect-resources
         with:

@@ -1,0 +1,34 @@
+name: Provision Konnect Team resources
+
+on:
+  workflow_call:
+    inputs:
+      action:
+        description: 'Action to perform'
+        type: string
+        default: 'provision'
+      environment:
+        description: 'Environment to provision'
+        type: string
+        default: 'dev'
+
+env:
+  KONNECT_RESOURCES_FILE: ${{ github.workspace }}/konnect/resources.yaml
+
+jobs:
+  provision-konnect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # - name: Provision Konnect Resources
+      #   uses: ./.github/actions/provision-konnect-resources
+      #   with:
+      #     action: ${{ inputs.action }}
+      #     config: ${{ github.workspace }}/${{ inputs.config }}
+      #     vault_address: ${{secrets.VAULT_ADDR}} 
+      #     vault_token: ${{ secrets.VAULT_TOKEN }}
+      #     s3_access_key: ${{ secrets.S3_ACCESS_KEY }}
+      #     s3_secret_key: ${{ secrets.S3_SECRET_KEY }}

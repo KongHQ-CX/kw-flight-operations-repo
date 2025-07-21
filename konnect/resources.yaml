@@ -1,0 +1,25 @@
+metadata:
+  format_version: "1.0.0"
+  type: konnect.team.resources
+  region: eu
+  team: Flight Operations
+  description: Flight Operations team resources onboarded to the Konnect APIM platform
+
+resources:
+  - type: konnect.control_plane
+    name: flight-operations-dev
+    description: flight-operations development control plane
+    labels:
+      env: development
+
+  - type: konnect.control_plane
+    name: flight-operations-staging
+    description: flight-operations staging control plane
+    labels:
+      env: staging
+
+  - type: konnect.control_plane
+    name: flight-operations-prod
+    description: flight-operations production control plane
+    labels:
+      env: production

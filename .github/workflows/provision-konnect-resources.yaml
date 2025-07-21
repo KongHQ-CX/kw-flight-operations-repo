@@ -23,12 +23,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Provision Konnect Resources
-      #   uses: ./.github/actions/provision-konnect-resources
-      #   with:
-      #     action: ${{ inputs.action }}
-      #     config: ${{ github.workspace }}/${{ inputs.config }}
-      #     vault_address: ${{secrets.VAULT_ADDR}} 
-      #     vault_token: ${{ secrets.VAULT_TOKEN }}
-      #     s3_access_key: ${{ secrets.S3_ACCESS_KEY }}
-      #     s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
+      - name: Extract team name from git repo
+        run: |
+          REPO_NAME=$(basename $(git rev-parse --show-toplevel))
+          TEAM_NAME="${REPO_NAME#team-}"
+          TEAM_NAME="${TEAM_NAME%-repo}"
+          echo "TEAM_NAME=$TEAM_NAME" >> $GITHUB_ENV
+          echo "Repository name: $REPO_NAME"
+          echo "Team name: $TEAM_NAME"
+
+      - name: Provision Konnect Resources
+        uses: ./platform-actions/provision-konnect-resources
+        with:
+          action: ${{ inputs.action }}
+          config: ${{ env.KONNECT_RESOURCES_FILE }}
+          vault_address: ${{secrets.VAULT_ADDR}} 
+          vault_token: ${{ secrets.VAULT_TOKEN }}
+          s3_access_key: ${{ secrets.S3_ACCESS_KEY }}
+          s3_secret_key: ${{ secrets.S3_SECRET_KEY }}

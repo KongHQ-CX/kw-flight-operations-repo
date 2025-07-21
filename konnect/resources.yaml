@@ -2,7 +2,7 @@ metadata:
   format_version: "1.0.0"
   type: konnect.team.resources
   region: eu
-  team: Flight Operations
+  team: flight-operations
   description: Flight Operations team resources onboarded to the Konnect APIM platform
 
 resources:

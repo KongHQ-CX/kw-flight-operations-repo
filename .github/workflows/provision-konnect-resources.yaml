@@ -46,6 +46,7 @@ jobs:
           echo "SYSTEM_ACCOUNT_TOKEN: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}"
           echo "VAULT_ADDR: ${{ env.VAULT_ADDR }}"
           echo "AWS_ENDPOINT_URL: ${{ vars.AWS_ENDPOINT_URL }}"
+          echo "VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}"
 
       - name: Provision Konnect Resources
         uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main

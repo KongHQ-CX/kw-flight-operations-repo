@@ -41,7 +41,7 @@ jobs:
             flight-operations-kv/data/system-accounts/sa-flight-operations token | SYSTEM_ACCOUNT_TOKEN ;
 
       - name: Provision Konnect Resources
-        uses: KongHQ-CX/.github/actions/provision-konnect-resources@main
+        uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
         with:
           action: ${{ inputs.action }}
           config: ${{ env.KONNECT_RESOURCES_FILE }}

@@ -14,6 +14,8 @@ on:
 
 env:
   KONNECT_RESOURCES_FILE: ${{ github.workspace }}/konnect/resources.yaml
+  VAULT_ADDR: ${{ vars.VAULT_ADDR }}
+  AWS_ENDPOINT_URL: ${{ vars.AWS_ENDPOINT_URL }}
 
 jobs:
   provision-konnect:
@@ -27,23 +29,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Method 1: Using HashiCorp's official Vault Action
       - name: Get secrets from Vault
         uses: hashicorp/vault-action@v3
         with:
           url: https://vault-production-218a.up.railway.app
           method: jwt
-          path: github-actions                    # The auth path from Terraform
-          role: flight-operations-gh-repo-role        # The role name from Terraform
+          path: github-actions           
+          role: flight-operations-gh-repo-role
+          exportToken: true  # Key setting!
           secrets: |
             flight-operations-kv/data/system-accounts/sa-flight-operations token | SYSTEM_ACCOUNT_TOKEN ;
 
-      # - name: Provision Konnect Resources
-      #   uses: ./platform-actions/provision-konnect-resources
-      #   with:
-      #     action: ${{ inputs.action }}
-      #     config: ${{ env.KONNECT_RESOURCES_FILE }}
-      #     vault_address: ${{secrets.VAULT_ADDR}} 
-      #     vault_token: ${{ secrets.VAULT_TOKEN }}
-      #     s3_access_key: ${{ secrets.S3_ACCESS_KEY }}
-      #     s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
+      - name: Provision Konnect Resources
+        uses: KongHQ-CX/.github/actions/provision-konnect-resources@main
+        with:
+          action: ${{ inputs.action }}
+          config: ${{ env.KONNECT_RESOURCES_FILE }}
+          vault_address: ${{ env.VAULT_ADDR }}
+          vault_token: ${{ secrets.VAULT_TOKEN }}
+          s3_endpoint_url: ${{ vars.AWS_ENDPOINT_URL }}
+          s3_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          s3_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          konnect_token: ${{ secrets.SYSTEM_ACCOUNT_TOKEN }}

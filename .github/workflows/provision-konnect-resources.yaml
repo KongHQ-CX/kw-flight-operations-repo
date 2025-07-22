@@ -1,7 +1,7 @@
 name: Provision Konnect Team resources
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       action:
         description: 'Action to perform'

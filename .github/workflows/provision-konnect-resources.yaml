@@ -31,6 +31,7 @@ jobs:
 
       - name: Get secrets from Vault
         uses: hashicorp/vault-action@v3
+        id: import-secrets
         with:
           url: https://vault-production-218a.up.railway.app
           method: jwt
@@ -42,7 +43,7 @@ jobs:
 
       - name: Debug tokens
         run: |
-          echo "SYSTEM_ACCOUNT_TOKEN: ${{ secrets.SYSTEM_ACCOUNT_TOKEN }}"
+          echo "SYSTEM_ACCOUNT_TOKEN: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}"
           echo "VAULT_ADDR: ${{ env.VAULT_ADDR }}"
           echo "AWS_ENDPOINT_URL: ${{ vars.AWS_ENDPOINT_URL }}"
 

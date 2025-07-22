@@ -40,14 +40,20 @@ jobs:
           secrets: |
             flight-operations-kv/data/system-accounts/sa-flight-operations token | SYSTEM_ACCOUNT_TOKEN ;
 
-      - name: Provision Konnect Resources
-        uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
-        with:
-          action: ${{ inputs.action }}
-          config: ${{ env.KONNECT_RESOURCES_FILE }}
-          vault_address: ${{ env.VAULT_ADDR }}
-          vault_token: ${{ secrets.VAULT_TOKEN }}
-          s3_endpoint_url: ${{ vars.AWS_ENDPOINT_URL }}
-          s3_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          s3_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          konnect_token: ${{ secrets.SYSTEM_ACCOUNT_TOKEN }}
+      - name: Debug tokens
+        run: |
+          echo "SYSTEM_ACCOUNT_TOKEN: ${{ secrets.SYSTEM_ACCOUNT_TOKEN }}"
+          echo "VAULT_ADDR: ${{ env.VAULT_ADDR }}"
+          echo "AWS_ENDPOINT_URL: ${{ vars.AWS_ENDPOINT_URL }}"
+
+      # - name: Provision Konnect Resources
+      #   uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
+      #   with:
+      #     action: ${{ inputs.action }}
+      #     config: ${{ env.KONNECT_RESOURCES_FILE }}
+      #     vault_address: ${{ env.VAULT_ADDR }}
+      #     vault_token: ${{ secrets.VAULT_TOKEN }}
+      #     s3_endpoint_url: ${{ vars.AWS_ENDPOINT_URL }}
+      #     s3_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     s3_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     konnect_token: ${{ secrets.SYSTEM_ACCOUNT_TOKEN }}

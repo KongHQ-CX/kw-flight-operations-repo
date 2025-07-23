@@ -42,7 +42,7 @@ jobs:
           role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
           exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
-            ${{ vars.KONNECT_TEAM_NAME }}/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
 
       - name: Provision Konnect Resources
         uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main

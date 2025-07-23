@@ -5,7 +5,10 @@ on:
     inputs:
       action:
         description: 'Action to perform'
-        type: string
+        type: choice
+        options:
+          - provision
+          - destroy
         default: 'provision'
       environment:
         description: 'Environment to provision'

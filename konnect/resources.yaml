@@ -26,26 +26,20 @@ resources:
 
   - type: konnect.api
     name: Flights API
-    version: v1
-    description: KongAir Flights service
     deprecated: false
     labels:
       domain: operations
       team: flight-operations
       criticality: high
-    slug: flights-api-v1
     spec_content:
       file: "apis/flights/openapi.yaml"
 
   - type: konnect.api
     name: Routes API
-    version: v1
     description: KongAir Routes service
-    deprecated: false
     labels:
       domain: operations
       team: flight-operations
       criticality: high
-    slug: routes-api-v1
     spec_content:
       file: "apis/routes/openapi.yaml"

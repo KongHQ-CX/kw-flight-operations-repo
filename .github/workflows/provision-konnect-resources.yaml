@@ -33,13 +33,13 @@ jobs:
         uses: hashicorp/vault-action@v3
         id: import-secrets
         with:
-          url: https://vault-production-218a.up.railway.app
+          url: ${{ vars.VAULT_ADDR }}
           method: jwt
           path: github-actions           
-          role: flight-operations-gh-repo-role
+          role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
           exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
-            flight-operations-kv/data/system-accounts/sa-flight-operations token | SYSTEM_ACCOUNT_TOKEN ;
+            ${{ vars.KONNECT_TEAM_NAME }}/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
 
       - name: Provision Konnect Resources
         uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
@@ -52,3 +52,4 @@ jobs:
           s3_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           s3_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           konnect_token: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}
+          konnect_team_name: ${{ vars.KONNECT_TEAM_NAME }}

@@ -26,6 +26,7 @@ resources:
 
   - type: konnect.api
     name: Flights API
+    description: KongAir Flights service
     deprecated: false
     labels:
       domain: operations

@@ -23,3 +23,16 @@ resources:
     description: flight-operations production control plane
     labels:
       env: production
+
+  - type: konnect.api
+    name: Flights API
+    version: v1
+    description: KongAir Flights service
+    deprecated: false
+    labels:
+      domain: operations
+      team: flight-operations
+      criticality: high
+    slug: flights-api-v1
+    spec_content:
+      $ref: "apis/flights/openapi.yaml"

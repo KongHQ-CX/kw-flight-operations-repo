@@ -35,6 +35,9 @@ resources:
       criticality: high
     spec_content:
       file: "apis/flights/openapi.yaml"
+    portals:
+      - name: KongAir Dev Portal
+        visibility: public
 
   - type: konnect.api
     name: Routes API

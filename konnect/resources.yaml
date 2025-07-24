@@ -36,7 +36,7 @@ resources:
     spec_content:
       file: "apis/flights/openapi.yaml"
     portals:
-      - name: KongAir Dev Portal
+      - id: 4e0c036d-5bac-43e5-a85a-0d88203ecce1
         visibility: public
 
   - type: konnect.api

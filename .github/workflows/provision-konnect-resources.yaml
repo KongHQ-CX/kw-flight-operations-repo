@@ -49,10 +49,10 @@ jobs:
         with:
           action: ${{ inputs.action }}
           config: ${{ env.KONNECT_RESOURCES_FILE }}
-          vault_address: ${{ env.VAULT_ADDR }}
-          vault_token: ${{ env.VAULT_TOKEN }} 
-          s3_endpoint_url: ${{ vars.AWS_ENDPOINT_URL }}
-          s3_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          s3_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          konnect_token: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}
-          konnect_team_name: ${{ vars.KONNECT_TEAM_NAME }}
+          vault-address: ${{ env.VAULT_ADDR }}
+          vault-token: ${{ env.VAULT_TOKEN }} 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          konnect-token: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}
+          konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}

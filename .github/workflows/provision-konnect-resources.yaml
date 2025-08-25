@@ -48,7 +48,7 @@ jobs:
         uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
         with:
           action: ${{ inputs.action }}
-          config: ${{ env.KONNECT_RESOURCES_FILE }}
+          konnect-resources: ${{ env.KONNECT_RESOURCES_FILE }}
           vault-address: ${{ env.VAULT_ADDR }}
           vault-token: ${{ env.VAULT_TOKEN }} 
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

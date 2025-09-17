@@ -1,0 +1,38 @@
+name: Publish API Configuration to a Control Plane
+
+on:
+  workflow_dispatch:
+    inputs:
+      openapi_spec:
+        description: "Path to the OpenAPI Specification file"
+        required: true
+        type: string
+      control_plane_name:
+        description: "Kong Konnect control plane name"
+        required: true
+        type: string
+
+jobs:
+  publish-api-configuration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Import system account Token from Vault
+        id: import-token
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ vars.VAULT_ADDR }}
+          token: ${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
+
+
+      - name: Publish API Configuration in CP
+        uses: KongHQ-CX/kw-platform-ops/.github/actions/publish-api-configuration@main
+        with:
+          openapi_spec: ${{ inputs.openapi_spec }}
+          control_plane_name: ${{ inputs.control_plane_name }}
+          system_account_token: ${{ steps.import-token.outputs.SYSTEM_ACCOUNT_TOKEN }}

@@ -52,4 +52,3 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           konnect-token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
           konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}
-          s3-bucket: "kw.konnect.${{ vars.KONNECT_TEAM_NAME }}-terraform-state"

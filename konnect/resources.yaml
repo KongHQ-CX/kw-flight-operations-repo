@@ -46,3 +46,10 @@ resources:
       criticality: high
     spec_content:
       file: "apis/routes/openapi.yaml"
+
+  - type: konnect.api_publication
+    api_name: "Flights API"
+    auto_approve_registrations: true
+    portal_name: "kongair-api-dev-portal"
+    visibility: public
+  

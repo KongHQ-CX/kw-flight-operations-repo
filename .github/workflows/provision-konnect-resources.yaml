@@ -10,10 +10,6 @@ on:
           - provision
           - destroy
         default: 'provision'
-      environment:
-        description: 'Environment to provision'
-        type: string
-        default: 'dev'
 
 env:
   KONNECT_RESOURCES_FILE: ${{ github.workspace }}/konnect/resources.yaml
@@ -56,3 +52,4 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           konnect-token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
           konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}
+          s3-bucket: "kw.konnect.${{ vars.KONNECT_TEAM_NAME }}-terraform-state"

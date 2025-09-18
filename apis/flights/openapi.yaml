@@ -6,6 +6,8 @@ info:
   description: KongAir Flights service provides the scheduled flights for KongAir
   version: 0.1.0
   title: Flights Service
+  x-business-unit: flight-operations
+  x-team-name: flights-team
 
 servers:
 - url: https://api.kong-air.com

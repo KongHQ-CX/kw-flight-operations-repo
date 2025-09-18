@@ -6,11 +6,19 @@ on:
       openapi_spec:
         description: "Path to the OpenAPI Specification file"
         required: true
-        type: string
+        type: choice
+        default: 'apis/flights/openapi.yaml'
+        options:
+          - 'apis/routes/openapi.yaml'
       control_plane_name:
-        description: "Kong Konnect control plane name"
+        description: 'Control Plane to deploy kong configuration to'
         required: true
-        type: string
+        type: choice
+        default: 'flight-operations-dev'
+        options:
+          - 'flight-operations-dev'
+          - 'flight-operations-staging'
+          - 'flight-operations-prod'
 
 jobs:
   publish-api-configuration:

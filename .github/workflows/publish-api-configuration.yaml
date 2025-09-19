@@ -20,23 +20,47 @@ on:
           - 'flight-operations-dev'
           - 'flight-operations-staging'
           - 'flight-operations-prod'
+      api_team_plugins_path:
+        description: 'Path to the API team plugins directory'
+        required: true
+        type: choice
+        default: 'apis/flights/plugins'
+        options:
+          - 'apis/flights/plugins'
+          - 'apis/routes/plugins'
 
 jobs:
   publish-api-configuration:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write   # Required for OIDC token generation
+      contents: read    # Required to checkout code
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Import system account Token from Vault
-        id: import-token
-        uses: hashicorp/vault-action@v2
+
+      - name: Get secrets from Vault
+        uses: hashicorp/vault-action@v3
+        id: import-secrets
         with:
           url: ${{ vars.VAULT_ADDR }}
-          token: ${{ secrets.VAULT_TOKEN }}
+          method: jwt
+          path: github-actions           
+          role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
+          exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
+      
+      # - name: Import system account Token from Vault
+      #   id: import-token
+      #   uses: hashicorp/vault-action@v2
+      #   with:
+      #     url: ${{ vars.VAULT_ADDR }}
+      #     token: ${{ secrets.VAULT_TOKEN }}
+      #     secrets: |
+      #       ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
 
 
       - name: Publish API Configuration in CP

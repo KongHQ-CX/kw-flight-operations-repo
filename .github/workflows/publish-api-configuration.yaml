@@ -68,4 +68,4 @@ jobs:
         with:
           openapi_spec: ${{ inputs.openapi_spec }}
           control_plane_name: ${{ inputs.control_plane_name }}
-          system_account_token: ${{ steps.import-token.outputs.SYSTEM_ACCOUNT_TOKEN }}
+          system_account_token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}

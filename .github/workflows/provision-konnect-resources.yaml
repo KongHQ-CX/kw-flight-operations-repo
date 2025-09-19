@@ -28,26 +28,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Get secrets from Vault
-      #   uses: hashicorp/vault-action@v3
-      #   id: import-secrets
-      #   with:
-      #     url: ${{ vars.VAULT_ADDR }}
-      #     method: jwt
-      #     path: github-actions           
-      #     role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
-      #     exportToken: true  # exports the env.VAULT_TOKEN
-      #     secrets: |
-      #       ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
-      
-      - name: Import system account Token from Vault
-        id: import-token
-        uses: hashicorp/vault-action@v2
+      - name: Get secrets from Vault
+        uses: hashicorp/vault-action@v3
+        id: import-secrets
         with:
           url: ${{ vars.VAULT_ADDR }}
-          token: ${{ secrets.VAULT_TOKEN }}
+          method: jwt
+          path: github-actions           
+          role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
+          exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
+      
+      # - name: Import system account Token from Vault
+      #   id: import-token
+      #   uses: hashicorp/vault-action@v2
+      #   with:
+      #     url: ${{ vars.VAULT_ADDR }}
+      #     token: ${{ secrets.VAULT_TOKEN }}
+      #     secrets: |
+      #       ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
 
       - name: Provision Konnect Resources
         uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main

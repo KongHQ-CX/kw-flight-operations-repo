@@ -59,5 +59,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          konnect-token: ${{ steps.import-secrets.outputs.SYSTEM_ACCOUNT_TOKEN }}
+          konnect-token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
           konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}

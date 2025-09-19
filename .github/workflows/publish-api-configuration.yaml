@@ -69,3 +69,4 @@ jobs:
           openapi_spec: ${{ inputs.openapi_spec }}
           control_plane_name: ${{ inputs.control_plane_name }}
           system_account_token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
+          konnect_server_url: ${{ vars.KONNECT_SERVER_URL }}

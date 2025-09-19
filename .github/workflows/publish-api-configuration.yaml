@@ -10,6 +10,7 @@ on:
         default: 'apis/flights/openapi.yaml'
         options:
           - 'apis/routes/openapi.yaml'
+          - 'apis/flights/openapi.yaml'
       control_plane_name:
         description: 'Control Plane to deploy kong configuration to'
         required: true

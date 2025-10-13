@@ -52,16 +52,6 @@ jobs:
           exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
-      
-      # - name: Import system account Token from Vault
-      #   id: import-token
-      #   uses: hashicorp/vault-action@v2
-      #   with:
-      #     url: ${{ vars.VAULT_ADDR }}
-      #     token: ${{ secrets.VAULT_TOKEN }}
-      #     secrets: |
-      #       ${{ vars.KONNECT_TEAM_NAME }}-kv/data/system-accounts/sa-${{ vars.KONNECT_TEAM_NAME }} token | SYSTEM_ACCOUNT_TOKEN ;
-
 
       - name: Publish API Configuration in CP
         uses: KongHQ-CX/kw-platform-ops/.github/actions/publish-api-configuration@main

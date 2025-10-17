@@ -56,8 +56,7 @@ resources:
       preset_filters:
         - field: realm
           operator: in
-          value:
-            - production
+          value: '["production"]'
       tiles:
         - chart:
             type: chart
@@ -76,8 +75,7 @@ resources:
                   filters:
                     - field: status_code_grouped
                       operator: not_in
-                      value:
-                        - 5XX
+                      value: '["5XX"]'
                   granularity: hourly
                   metrics:
                     - kong_latency_p95
@@ -86,6 +84,7 @@ resources:
                       type: relative
                       time_range: 7d
                       tz: Etc/UTC
+
 
   # - type: konnect.api_publication
   #   api_name: "Flights API"

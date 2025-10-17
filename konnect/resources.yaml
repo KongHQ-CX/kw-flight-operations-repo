@@ -41,7 +41,7 @@ resources:
     version: v0
     slug: flights-api-documentation
     content:
-      file: "apis/flights/api_documentation.md"
+      file: "apis/flights/docs/flights-api.md"
 
   - type: konnect.api
     name: Routes API

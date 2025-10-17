@@ -38,6 +38,7 @@ resources:
   
   - type: konnect.api_document
     api_name: Flights API
+    slug: flights-api-documentation
     content:
       file: "apis/flights/api_documentation.md"
 

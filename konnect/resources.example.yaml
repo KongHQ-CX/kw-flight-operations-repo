@@ -35,6 +35,23 @@ resources:
       criticality: high
     spec_content:
       file: "apis/flights/openapi.yaml"
+  
+  - type: konnect.api_document
+    api_name: Flights API
+    version: v0
+    slug: flights-api-documentation
+    title: Flights API Documentation
+    status: published
+    content:
+      file: "apis/flights/docs/flights-api.md"
+
+  - type: konnect.api_publication
+    api_name: "Flights API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+    portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
 
   - type: konnect.api
     name: Routes API
@@ -46,3 +63,62 @@ resources:
       criticality: high
     spec_content:
       file: "apis/routes/openapi.yaml"
+  
+  - type: konnect.api_document
+    api_name: Routes API
+    version: v0
+    slug: routes-api-documentation
+    title: Routes API Documentation
+    status: published
+    content:
+      file: "apis/routes/docs/routes-api.md"
+
+  - type: konnect.api_publication
+    api_name: "Routes API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+    portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
+
+  - type: konnect.dashboard
+    name: kongair-observability
+    labels:
+      scope: internal
+      owner: platform
+    definition:
+      tiles:
+        - chart:
+            type: chart
+            layout:
+              position: { col: 0, row: 0 }
+              size: { cols: 6, rows: 6 }
+            definition:
+              chart:
+                donut:
+                  chart_title: KongAir Requests by API Product
+                  type: donut
+              query:
+                api_usage:
+                  datasource: api_usage
+                  dimensions:
+                    - api_product
+                  filters:
+                    - field: status_code_grouped
+                      operator: not_in
+                      value: '["5XX"]'
+                  granularity: hourly
+                  metrics:
+                    - kong_latency_p95
+                  time_range:
+                    relative:
+                      type: relative
+                      time_range: 7d
+                      tz: Etc/UTC
+
+
+  # - type: konnect.api_publication
+  #   api_name: "Flights API"
+  #   auto_approve_registrations: true
+  #   portal_name: "kongair-api-dev-portal"
+  #   visibility: public

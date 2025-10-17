@@ -60,10 +60,10 @@ resources:
       scope: internal
       owner: platform
     definition:
-      preset_filters:
-        - field: realm
-          operator: in
-          value: '["production"]'
+      # preset_filters:
+      #   - field: realm
+      #     operator: in
+      #     value: '["production"]'
       tiles:
         - chart:
             type: chart

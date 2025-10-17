@@ -35,6 +35,11 @@ resources:
       criticality: high
     spec_content:
       file: "apis/flights/openapi.yaml"
+  
+  - type: konnect.api_document
+    api_name: Flights API
+    content:
+      file: "apis/flights/api_documentation.md"
 
   - type: konnect.api
     name: Routes API

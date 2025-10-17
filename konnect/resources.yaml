@@ -48,30 +48,26 @@ resources:
       file: "apis/routes/openapi.yaml"
 
   - type: konnect.dashboard
-    name: "kongair-observability"
+    name: kongair-observability
     labels:
-      scope: "internal"
-      owner: "platform"
+      scope: internal
+      owner: platform
     definition:
       preset_filters:
         - field: realm
-          operator: not_empty
-          value: '{"match": "production"}'
+          operator: in
+          value:
+            - production
       tiles:
         - chart:
             type: chart
             layout:
-              position:
-                col: 0
-                row: 0
-              size:
-                cols: 6
-                rows: 6
+              position: { col: 0, row: 0 }
+              size: { cols: 6, rows: 6 }
             definition:
               chart:
                 donut:
                   chart_title: KongAir Requests by API Product
-                  type: donut
               query:
                 api_usage:
                   datasource: api_usage
@@ -80,14 +76,15 @@ resources:
                   filters:
                     - field: status_code_grouped
                       operator: not_in
-                      value: '{"values":["5XX"]}'
+                      value:
+                        - 5XX
                   granularity: hourly
                   metrics:
                     - kong_latency_p95
                   time_range:
                     relative:
-                      time_range: 7d
                       type: relative
+                      time_range: 7d
                       tz: Etc/UTC
 
   # - type: konnect.api_publication

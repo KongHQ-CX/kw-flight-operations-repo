@@ -63,6 +63,23 @@ resources:
       criticality: high
     spec_content:
       file: "apis/routes/openapi.yaml"
+  
+  - type: konnect.api_document
+    api_name: Routes API
+    version: v0
+    slug: routes-api-documentation
+    title: Routes API Documentation
+    status: published
+    content:
+      file: "apis/routes/docs/routes-api.md"
+
+  - type: konnect.api_publication
+    api_name: "Routes API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+    portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
 
   - type: konnect.dashboard
     name: kongair-observability

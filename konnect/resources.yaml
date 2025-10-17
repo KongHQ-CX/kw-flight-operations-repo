@@ -44,6 +44,13 @@ resources:
     content:
       file: "apis/flights/docs/flights-api.md"
 
+  - type: konnect.api_publication
+    api_name: "Flights API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+
   - type: konnect.api
     name: Routes API
     version: v0

@@ -67,6 +67,7 @@ resources:
               chart:
                 donut:
                   chart_title: KongAir Requests by API Product
+                  type: donut
               query:
                 api_usage:
                   datasource: api_usage

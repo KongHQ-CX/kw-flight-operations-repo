@@ -41,6 +41,7 @@ resources:
     version: v0
     slug: flights-api-documentation
     title: Flights API Documentation
+    status: published
     content:
       file: "apis/flights/docs/flights-api.md"
 

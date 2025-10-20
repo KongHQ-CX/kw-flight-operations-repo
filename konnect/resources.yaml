@@ -81,64 +81,64 @@ resources:
     visibility: public
     portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
 
-  - type: konnect.dashboard
-    name: kongair-organization-dashboard
-    labels:
-      scope: internal
-      owner: platform
-    definition:    
-      tiles:
-        - chart:
-            type: "chart"
-            layout:
-              size: {cols: 6, rows: 2}
-              position: {col: 0, row: 0}
-            definition:
-              chart:
-                timeseries_line:
-                  chart_title: "Total traffic over time"
-                  type: "timeseries_line"
-              query:
-                api_usage:
-                  metrics:
-                    - "request_count"
-                  dimensions:
-                    - "time"
-        
   # - type: konnect.dashboard
-  #   name: kongair-observability
+  #   name: kongair-organization-dashboard
   #   labels:
   #     scope: internal
   #     owner: platform
-  #   definition:
+  #   definition:    
   #     tiles:
   #       - chart:
-  #           type: chart
+  #           type: "chart"
   #           layout:
-  #             position: { col: 0, row: 0 }
-  #             size: { cols: 6, rows: 2 }
+  #             size: {cols: 6, rows: 2}
+  #             position: {col: 0, row: 0}
   #           definition:
   #             chart:
   #               timeseries_line:
-  #                 chart_title: Total traffic over time
-  #                 type: timeseries_line
+  #                 chart_title: "Total traffic over time"
+  #                 type: "timeseries_line"
   #             query:
   #               api_usage:
-  #                 datasource: api_usage
-  #                 dimensions:
-  #                   - api_product
-  #                 filters:
-  #                   - field: status_code_grouped
-  #                     operator: not_in
-  #                     value: '["5XX"]'
-  #                 granularity: hourly
   #                 metrics:
-  #                   - kong_latency_p95
-  #                 time_range:
-  #                   relative:
-  #                     type: relative
-  #                     time_range: 7d
-  #                     tz: Etc/UTC
+  #                   - "request_count"
+  #                 dimensions:
+  #                   - "time"
+        
+  - type: konnect.dashboard
+    name: kongair-observability
+    labels:
+      scope: internal
+      owner: platform
+    definition:
+      tiles:
+        - chart:
+            type: chart
+            layout:
+              position: { col: 0, row: 0 }
+              size: { cols: 6, rows: 2 }
+            definition:
+              chart:
+                timeseries_line:
+                  chart_title: Total traffic over time
+                  type: timeseries_line
+              query:
+                api_usage:
+                  datasource: api_usage
+                  dimensions:
+                    - api_product
+                  filters:
+                    - field: status_code_grouped
+                      operator: not_in
+                      value: '["5XX"]'
+                  granularity: hourly
+                  metrics:
+                    - kong_latency_p95
+                  time_range:
+                    relative:
+                      type: relative
+                      time_range: 7d
+                      tz: Etc/UTC
 
 
 

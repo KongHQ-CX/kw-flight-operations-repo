@@ -106,177 +106,177 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "time"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 0
-              row: 2
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Top gateway services by requests"
-            query:
-              filters:
-                - field: "gateway_service"
-                  operator: "not_empty"
-              metrics:
-                - "request_count"
-              datasource: "api_usage"
-              dimensions:
-                - "gateway_service"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 2
-              row: 2
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Top routes by requests"
-            query:
-              filters:
-                - field: "route"
-                  operator: "not_empty"
-              metrics:
-                - "request_count"
-              datasource: "api_usage"
-              dimensions:
-                - "route"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 4
-              row: 2
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Top consumers by requests"
-            query:
-              filters:
-                - field: "consumer"
-                  operator: "not_empty"
-              metrics:
-                - "request_count"
-              datasource: "api_usage"
-              dimensions:
-                - "consumer"
-        - type: "chart"
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 0
-              row: 4
-          definition:
-            chart:
-              type: "timeseries_line"
-              chart_title: "Latency breakdown over time"
-            query:
-              metrics:
-                - "response_latency_p99"
-                - "response_latency_p95"
-                - "response_latency_p50"
-              datasource: "api_usage"
-              dimensions:
-                - "time"
-        - type: "chart"
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 3
-              row: 4
-          definition:
-            chart:
-              type: "timeseries_line"
-              chart_title: "Kong vs upstream latency over time"
-            query:
-              metrics:
-                - "upstream_latency_p99"
-                - "kong_latency_p99"
-              datasource: "api_usage"
-              dimensions:
-                - "time"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 0
-              row: 6
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Slowest gateway services (average)"
-            query:
-              filters:
-                - field: "gateway_service"
-                  operator: "not_empty"
-              metrics:
-                - "response_latency_average"
-              datasource: "api_usage"
-              dimensions:
-                - "gateway_service"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 2
-              row: 6
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Slowest routes (average)"
-            query:
-              filters:
-                - field: "route"
-                  operator: "not_empty"
-              metrics:
-                - "response_latency_average"
-              datasource: "api_usage"
-              dimensions:
-                - "route"
-        - type: "chart"
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 4
-              row: 6
-          definition:
-            chart:
-              type: "horizontal_bar"
-              stacked: true
-              chart_title: "Slowest consumers (average)"
-            query:
-              filters:
-                - field: "consumer"
-                  operator: "not_empty"
-              metrics:
-                - "response_latency_average"
-              datasource: "api_usage"
-              dimensions:
-                - "consumer"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 0
+        #       row: 2
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Top gateway services by requests"
+        #     query:
+        #       filters:
+        #         - field: "gateway_service"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "request_count"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "gateway_service"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 2
+        #       row: 2
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Top routes by requests"
+        #     query:
+        #       filters:
+        #         - field: "route"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "request_count"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "route"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 4
+        #       row: 2
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Top consumers by requests"
+        #     query:
+        #       filters:
+        #         - field: "consumer"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "request_count"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "consumer"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 3
+        #       rows: 2
+        #     position:
+        #       col: 0
+        #       row: 4
+        #   definition:
+        #     chart:
+        #       type: "timeseries_line"
+        #       chart_title: "Latency breakdown over time"
+        #     query:
+        #       metrics:
+        #         - "response_latency_p99"
+        #         - "response_latency_p95"
+        #         - "response_latency_p50"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "time"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 3
+        #       rows: 2
+        #     position:
+        #       col: 3
+        #       row: 4
+        #   definition:
+        #     chart:
+        #       type: "timeseries_line"
+        #       chart_title: "Kong vs upstream latency over time"
+        #     query:
+        #       metrics:
+        #         - "upstream_latency_p99"
+        #         - "kong_latency_p99"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "time"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 0
+        #       row: 6
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Slowest gateway services (average)"
+        #     query:
+        #       filters:
+        #         - field: "gateway_service"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "response_latency_average"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "gateway_service"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 2
+        #       row: 6
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Slowest routes (average)"
+        #     query:
+        #       filters:
+        #         - field: "route"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "response_latency_average"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "route"
+        # - type: "chart"
+        #   layout:
+        #     size:
+        #       cols: 2
+        #       rows: 2
+        #     position:
+        #       col: 4
+        #       row: 6
+        #   definition:
+        #     chart:
+        #       type: "horizontal_bar"
+        #       stacked: true
+        #       chart_title: "Slowest consumers (average)"
+        #     query:
+        #       filters:
+        #         - field: "consumer"
+        #           operator: "not_empty"
+        #       metrics:
+        #         - "response_latency_average"
+        #       datasource: "api_usage"
+        #       dimensions:
+        #         - "consumer"
 
   # - type: konnect.dashboard
   #   name: kongair-observability

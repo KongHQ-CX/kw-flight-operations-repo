@@ -82,7 +82,7 @@ resources:
     portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
 
   - type: konnect.dashboard
-    name: kongair-observability
+    name: kongair-organization-dashboard
     labels:
       scope: internal
       owner: platform
@@ -106,7 +106,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "time"
-
         - type: "chart"
           layout:
             size:
@@ -129,7 +128,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "gateway_service"
-
         - type: "chart"
           layout:
             size:
@@ -152,7 +150,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "route"
-
         - type: "chart"
           layout:
             size:
@@ -175,7 +172,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "consumer"
-
         - type: "chart"
           layout:
             size:
@@ -196,7 +192,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "time"
-
         - type: "chart"
           layout:
             size:
@@ -216,7 +211,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "time"
-
         - type: "chart"
           layout:
             size:
@@ -239,7 +233,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "gateway_service"
-
         - type: "chart"
           layout:
             size:
@@ -262,7 +255,6 @@ resources:
               datasource: "api_usage"
               dimensions:
                 - "route"
-
         - type: "chart"
           layout:
             size:

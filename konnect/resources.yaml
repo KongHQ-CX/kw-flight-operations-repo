@@ -99,11 +99,11 @@ resources:
                   chart_title: "Total traffic over time"
                   type: "timeseries_line"
               query:
-                metrics:
-                  - "request_count"
-                datasource: "api_usage"
-                dimensions:
-                  - "time"
+                api_usage:
+                  metrics:
+                    - "request_count"
+                  dimensions:
+                    - "time"
         
   # - type: konnect.dashboard
   #   name: kongair-observability

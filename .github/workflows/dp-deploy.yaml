@@ -8,9 +8,6 @@ on:
         type: string
         default: 'dev'
 
-env:
-  VAULT_ADDR: ${{ vars.VAULT_ADDR }}
-
 jobs:
   deploy-dataplane:
     runs-on: ubuntu-latest
@@ -44,14 +41,14 @@ jobs:
         with:
           kong-image-repo: ${{ inputs.kong-image-repo || 'kong/kong-gateway' }}
           kong-image-tag: ${{ inputs.kong-image-tag || '3.11' }}
-          team-name: "flight-operations"
+          team-name: ${{ vars.KONNECT_TEAM_NAME }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          environment: ${{ inputs.environment  }}
           control-plane-clustering-cert: $CP_CLUSTERING_CERT
           control-plane-clustering-cert-key: $CP_CLUSTERING_CERT_KEY
           control-plane-endpoint: $CP_ENDPOINT
           telemetry-endpoint: $CP_TELEMETRY_ENDPOINT
           control-plane-name: $CP_NAME
-          environment: ${{ inputs.environment  }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          cluster-name: "konnect-301-eks-wDoLaiGY"
+          

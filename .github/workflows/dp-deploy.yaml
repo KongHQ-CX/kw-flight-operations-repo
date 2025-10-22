@@ -12,7 +12,7 @@ env:
   VAULT_ADDR: ${{ vars.VAULT_ADDR }}
 
 jobs:
-  provision-konnect:
+  deploy-dataplane:
     runs-on: ubuntu-latest
 
     permissions:

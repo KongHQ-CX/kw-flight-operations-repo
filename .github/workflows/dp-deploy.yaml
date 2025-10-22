@@ -1,0 +1,54 @@
+name: Deploy data-plane
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to provision'
+        type: string
+        default: 'dev'
+
+env:
+  VAULT_ADDR: ${{ vars.VAULT_ADDR }}
+
+jobs:
+  deploy-dataplane:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write   # Required for OIDC token generation
+      contents: read    # Required to checkout code
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get secrets from Vault
+        uses: hashicorp/vault-action@v3
+        id: import-secrets
+        with:
+          url: ${{ vars.VAULT_ADDR }}
+          method: jwt
+          path: github-actions           
+          role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
+          exportToken: true  # exports the env.VAULT_TOKEN
+          secrets: |
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert | CLUSTERING_CERT ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert_key | CLUSTERING_CERT_KEY ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} control_plane_endpoint | CP_ENDPOINT ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} telemetry_endpoint | TELEMETRY_ENDPOINT ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} name | CP_NAME ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} id | CP_ID ;
+
+      # - name: Provision Konnect Resources
+      #   uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
+      #   with:
+      #     action: ${{ inputs.action }}
+      #     konnect-resources: ${{ env.KONNECT_RESOURCES_FILE }}
+      #     vault-address: ${{ env.VAULT_ADDR }}
+      #     vault-token: ${{ env.VAULT_TOKEN }} 
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      #     konnect-token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
+      #     konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}

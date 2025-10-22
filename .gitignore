@@ -67,3 +67,4 @@ docker/*.deb
 
 demo_steps.txt
 .github/prompts/
+.vars

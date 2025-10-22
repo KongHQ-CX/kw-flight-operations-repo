@@ -33,22 +33,25 @@ jobs:
           role: ${{ vars.KONNECT_TEAM_NAME }}-gh-repo-role
           exportToken: true  # exports the env.VAULT_TOKEN
           secrets: |
-            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert | CLUSTERING_CERT ;
-            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert_key | CLUSTERING_CERT_KEY ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert | CP_CLUSTERING_CERT ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} clustering_cert_key | CP_CLUSTERING_CERT_KEY ;
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} control_plane_endpoint | CP_ENDPOINT ;
-            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} telemetry_endpoint | TELEMETRY_ENDPOINT ;
+            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} telemetry_endpoint | CP_TELEMETRY_ENDPOINT ;
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} name | CP_NAME ;
-            ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} id | CP_ID ;
 
-      # - name: Provision Konnect Resources
-      #   uses: KongHQ-CX/kw-platform-ops/.github/actions/provision-konnect-resources@main
-      #   with:
-      #     action: ${{ inputs.action }}
-      #     konnect-resources: ${{ env.KONNECT_RESOURCES_FILE }}
-      #     vault-address: ${{ env.VAULT_ADDR }}
-      #     vault-token: ${{ env.VAULT_TOKEN }} 
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-      #     konnect-token: ${{ env.SYSTEM_ACCOUNT_TOKEN }}
-      #     konnect-team-name: ${{ vars.KONNECT_TEAM_NAME }}
+      - name: Provision Konnect Resources
+        uses: KongHQ-CX/kw-platform-ops/.github/actions/deploy-dp@feat/dataplane-deploy
+        with:
+          kong-image-repo: ${{ inputs.kong-image-repo || 'kong/kong-gateway' }}
+          kong-image-tag: ${{ inputs.kong-image-tag || '3.11' }}
+          team-name: "flight-operations"
+          control-plane-clustering-cert: $CP_CLUSTERING_CERT
+          control-plane-clustering-cert-key: $CP_CLUSTERING_CERT_KEY
+          control-plane-endpoint: $CP_ENDPOINT
+          telemetry-endpoint: $CP_TELEMETRY_ENDPOINT
+          control-plane-name: $CP_NAME
+          environment: ${{ inputs.environment  }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          cluster-name: "konnect-301-eks-wDoLaiGY"

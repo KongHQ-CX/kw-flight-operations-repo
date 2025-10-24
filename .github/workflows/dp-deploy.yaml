@@ -37,7 +37,7 @@ jobs:
             ${{ vars.KONNECT_TEAM_NAME }}-kv/data/control-planes/${{ vars.KONNECT_TEAM_NAME }}-${{ inputs.environment }} name | CP_NAME ;
 
       - name: Provision Konnect Resources
-        uses: KongHQ-CX/kw-platform-ops/.github/actions/deploy-dp@@main
+        uses: KongHQ-CX/kw-platform-ops/.github/actions/deploy-dp@main
         with:
           kong-image-repo: ${{ inputs.kong-image-repo || 'kong/kong-gateway' }}
           kong-image-tag: ${{ inputs.kong-image-tag || '3.11' }}

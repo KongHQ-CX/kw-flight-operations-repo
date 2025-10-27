@@ -235,10 +235,10 @@ resources:
             row: 3
         definition:
           chart:
-            vertical_bar:
+            horizontal_bar:
               stacked: true
               chart_title: Top consumers by requests
-              type: vertical_bar
+              type: horizontal_bar
           query:
             api_usage:
               filters:
@@ -317,10 +317,10 @@ resources:
             row: 7
         definition:
           chart:
-            timeseries_bar:
+            timeseries_line:
               stacked: true
               chart_title: Errors over time
-              type: timeseries_bar
+              type: timeseries_line
           query:
             api_usage:
               filters:
@@ -449,10 +449,10 @@ resources:
             row: 13
         definition:
           chart:
-            vertical_bar:
+            horizontal_bar:
               stacked: true
               chart_title: Kong security report by gateway service
-              type: vertical_bar
+              type: horizontal_bar
           query:
             api_usage:
               filters:

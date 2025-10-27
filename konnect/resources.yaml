@@ -52,6 +52,8 @@ resources:
     portal_name: KongAir Portal
     visibility: public
     portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
+    auth_strategy_ids:
+      - "EntraIdAppAuthStrategy"
 
   - type: konnect.api
     name: Routes API
@@ -80,6 +82,8 @@ resources:
     portal_name: KongAir Portal
     visibility: public
     portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
+    auth_strategy_ids:
+      - "EntraIdAppAuthStrategy"
 
   # - type: konnect.dashboard
   #   name: kongair-organization-dashboard

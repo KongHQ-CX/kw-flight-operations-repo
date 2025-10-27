@@ -127,373 +127,373 @@ resources:
       owner: platform
     definition:
       tiles:
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 1
-            position:
-              col: 0
-              row: 0
-          definition:
-            chart:
-              type: single_value
-              chart_title: Total service requests (last day)
-            query:
-              api_usage:
-                filters: []
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions: []
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 1
-            position:
-              col: 2
-              row: 0
-          definition:
-            chart:
-              type: single_value
-              chart_title: Number of errors (4xx, 5xx)
-            query:
-              api_usage:
-                filters:
-                - field: status_code_grouped
-                  value: '["4XX","5XX"]'
-                  operator: in
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions: []
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 1
-            position:
-              col: 4
-              row: 0
-          definition:
-            chart:
-              type: single_value
-              chart_title: Average response time
-            query:
-              api_usage:
-                filters: []
-                metrics:
-                - response_latency_average
-                datasource: api_usage
-                dimensions: []
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 6
-              rows: 2
-            position:
-              col: 0
-              row: 1
-          definition:
-            chart:
-              type: timeseries_line
-              stacked: false
-              chart_title: Requests by gateway service over time
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - gateway_service
-                - time
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 0
-              row: 3
-          definition:
-            chart:
-              type: horizontal_bar
-              stacked: true
-              chart_title: Top gateway services by requests
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - gateway_service
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 2
-              row: 3
-          definition:
-            chart:
-              type: horizontal_bar
-              stacked: true
-              chart_title: Top routes by requests
-            query:
-              api_usage:
-                filters:
-                - field: route
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - route
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 2
-              rows: 2
-            position:
-              col: 4
-              row: 3
-          definition:
-            chart:
-              type: vertical_bar
-              stacked: true
-              chart_title: Top consumers by requests
-            query:
-              api_usage:
-                filters:
-                - field: consumer
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - consumer
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 0
-              row: 5
-          definition:
-            chart:
-              type: donut
-              chart_title: Gateway status codes
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - status_code
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 3
-              row: 5
-          definition:
-            chart:
-              type: horizontal_bar
-              stacked: true
-              chart_title: Top 5xx error sources (last 30 days)
-            query:
-              api_usage:
-                filters:
-                - field: status_code_grouped
-                  value: '["5XX"]'
-                  operator: in
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - gateway_service
-                - status_code
-                time_range:
-                  type: relative
-                  time_range: 30d
-                granularity: thirtyMinutely
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 6
-              rows: 2
-            position:
-              col: 0
-              row: 7
-          definition:
-            chart:
-              type: timeseries_bar
-              stacked: true
-              chart_title: Errors over time
-            query:
-              api_usage:
-                filters:
-                - field: status_code_grouped
-                  value: '["4XX","5XX"]'
-                  operator: in
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - status_code_grouped
-                - time
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 0
-              row: 9
-          definition:
-            chart:
-              type: timeseries_line
-              stacked: false
-              chart_title: Average Kong vs upstream latency over time
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - upstream_latency_average
-                - kong_latency_average
-                datasource: api_usage
-                dimensions:
-                - time
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 3
-              row: 9
-          definition:
-            chart:
-              type: horizontal_bar
-              stacked: true
-              chart_title: Average response time by gateway service
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                metrics:
-                - upstream_latency_average
-                datasource: api_usage
-                dimensions:
-                - gateway_service
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 0
-              row: 11
-          definition:
-            chart:
-              type: timeseries_line
-              stacked: false
-              chart_title: Failed authentication attempts over time
-            query:
-              api_usage:
-                filters:
-                - field: status_code
-                  value: '["401"]'
-                  operator: in
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - status_code
-                - time
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 3
-              rows: 2
-            position:
-              col: 3
-              row: 11
-          definition:
-            chart:
-              type: timeseries_line
-              stacked: false
-              chart_title: Rate limit hits over time
-            query:
-              api_usage:
-                filters:
-                - field: status_code
-                  value: '["429"]'
-                  operator: in
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - status_code
-                - time
-      - chart:
-          type: chart
-          layout:
-            size:
-              cols: 6
-              rows: 2
-            position:
-              col: 0
-              row: 13
-          definition:
-            chart:
-              type: vertical_bar
-              stacked: true
-              chart_title: Kong security report by gateway service
-            query:
-              api_usage:
-                filters:
-                - field: gateway_service
-                  operator: not_empty
-                - field: status_code
-                  value: '["401","429"]'
-                  operator: in
-                metrics:
-                - request_count
-                datasource: api_usage
-                dimensions:
-                - gateway_service
-                - status_code
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 1
+              position:
+                col: 0
+                row: 0
+            definition:
+              chart:
+                type: single_value
+                chart_title: Total service requests (last day)
+              query:
+                api_usage:
+                  filters: []
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions: []
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 1
+              position:
+                col: 2
+                row: 0
+            definition:
+              chart:
+                type: single_value
+                chart_title: Number of errors (4xx, 5xx)
+              query:
+                api_usage:
+                  filters:
+                  - field: status_code_grouped
+                    value: '["4XX","5XX"]'
+                    operator: in
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions: []
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 1
+              position:
+                col: 4
+                row: 0
+            definition:
+              chart:
+                type: single_value
+                chart_title: Average response time
+              query:
+                api_usage:
+                  filters: []
+                  metrics:
+                  - response_latency_average
+                  datasource: api_usage
+                  dimensions: []
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 6
+                rows: 2
+              position:
+                col: 0
+                row: 1
+            definition:
+              chart:
+                type: timeseries_line
+                stacked: false
+                chart_title: Requests by gateway service over time
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - gateway_service
+                  - time
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 2
+              position:
+                col: 0
+                row: 3
+            definition:
+              chart:
+                type: horizontal_bar
+                stacked: true
+                chart_title: Top gateway services by requests
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - gateway_service
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 2
+              position:
+                col: 2
+                row: 3
+            definition:
+              chart:
+                type: horizontal_bar
+                stacked: true
+                chart_title: Top routes by requests
+              query:
+                api_usage:
+                  filters:
+                  - field: route
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - route
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 2
+                rows: 2
+              position:
+                col: 4
+                row: 3
+            definition:
+              chart:
+                type: vertical_bar
+                stacked: true
+                chart_title: Top consumers by requests
+              query:
+                api_usage:
+                  filters:
+                  - field: consumer
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - consumer
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 0
+                row: 5
+            definition:
+              chart:
+                type: donut
+                chart_title: Gateway status codes
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - status_code
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 3
+                row: 5
+            definition:
+              chart:
+                type: horizontal_bar
+                stacked: true
+                chart_title: Top 5xx error sources (last 30 days)
+              query:
+                api_usage:
+                  filters:
+                  - field: status_code_grouped
+                    value: '["5XX"]'
+                    operator: in
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - gateway_service
+                  - status_code
+                  time_range:
+                    type: relative
+                    time_range: 30d
+                  granularity: thirtyMinutely
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 6
+                rows: 2
+              position:
+                col: 0
+                row: 7
+            definition:
+              chart:
+                type: timeseries_bar
+                stacked: true
+                chart_title: Errors over time
+              query:
+                api_usage:
+                  filters:
+                  - field: status_code_grouped
+                    value: '["4XX","5XX"]'
+                    operator: in
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - status_code_grouped
+                  - time
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 0
+                row: 9
+            definition:
+              chart:
+                type: timeseries_line
+                stacked: false
+                chart_title: Average Kong vs upstream latency over time
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - upstream_latency_average
+                  - kong_latency_average
+                  datasource: api_usage
+                  dimensions:
+                  - time
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 3
+                row: 9
+            definition:
+              chart:
+                type: horizontal_bar
+                stacked: true
+                chart_title: Average response time by gateway service
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  metrics:
+                  - upstream_latency_average
+                  datasource: api_usage
+                  dimensions:
+                  - gateway_service
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 0
+                row: 11
+            definition:
+              chart:
+                type: timeseries_line
+                stacked: false
+                chart_title: Failed authentication attempts over time
+              query:
+                api_usage:
+                  filters:
+                  - field: status_code
+                    value: '["401"]'
+                    operator: in
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - status_code
+                  - time
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 3
+                rows: 2
+              position:
+                col: 3
+                row: 11
+            definition:
+              chart:
+                type: timeseries_line
+                stacked: false
+                chart_title: Rate limit hits over time
+              query:
+                api_usage:
+                  filters:
+                  - field: status_code
+                    value: '["429"]'
+                    operator: in
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - status_code
+                  - time
+        - chart:
+            type: chart
+            layout:
+              size:
+                cols: 6
+                rows: 2
+              position:
+                col: 0
+                row: 13
+            definition:
+              chart:
+                type: vertical_bar
+                stacked: true
+                chart_title: Kong security report by gateway service
+              query:
+                api_usage:
+                  filters:
+                  - field: gateway_service
+                    operator: not_empty
+                  - field: status_code
+                    value: '["401","429"]'
+                    operator: in
+                  metrics:
+                  - request_count
+                  datasource: api_usage
+                  dimensions:
+                  - gateway_service
+                  - status_code

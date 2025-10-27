@@ -24,66 +24,66 @@ resources:
     labels:
       env: production
 
-  # - type: konnect.api
-  #   name: Flights API
-  #   version: v0
-  #   description: KongAir Flights service
-  #   deprecated: false
-  #   labels:
-  #     domain: operations
-  #     team: flight-operations
-  #     criticality: high
-  #   spec_content:
-  #     file: "apis/flights/openapi.yaml"
+  - type: konnect.api
+    name: Flights API
+    version: v0
+    description: KongAir Flights service
+    deprecated: false
+    labels:
+      domain: operations
+      team: flight-operations
+      criticality: high
+    spec_content:
+      file: "apis/flights/openapi.yaml"
   
-  # - type: konnect.api_document
-  #   api_name: Flights API
-  #   version: v0
-  #   slug: flights-api-documentation
-  #   title: Flights API Documentation
-  #   status: published
-  #   content:
-  #     file: "apis/flights/docs/flights-api.md"
+  - type: konnect.api_document
+    api_name: Flights API
+    version: v0
+    slug: flights-api-documentation
+    title: Flights API Documentation
+    status: published
+    content:
+      file: "apis/flights/docs/flights-api.md"
 
-  # - type: konnect.api_publication
-  #   api_name: "Flights API"
-  #   version: v0
-  #   auto_approve_registrations: true
-  #   portal_name: KongAir Portal
-  #   visibility: public
-  #   portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
-  #   auth_strategy_ids:
-  #     - "c18e7b6f-6ad2-46be-9cf1-5c50db2b5d41"
+  - type: konnect.api_publication
+    api_name: "Flights API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+    portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
+    auth_strategy_ids:
+      - "c18e7b6f-6ad2-46be-9cf1-5c50db2b5d41"
 
-  # - type: konnect.api
-  #   name: Routes API
-  #   version: v0
-  #   description: KongAir Routes service
-  #   labels:
-  #     domain: operations
-  #     team: flight-operations
-  #     criticality: high
-  #   spec_content:
-  #     file: "apis/routes/openapi.yaml"
+  - type: konnect.api
+    name: Routes API
+    version: v0
+    description: KongAir Routes service
+    labels:
+      domain: operations
+      team: flight-operations
+      criticality: high
+    spec_content:
+      file: "apis/routes/openapi.yaml"
   
-  # - type: konnect.api_document
-  #   api_name: Routes API
-  #   version: v0
-  #   slug: routes-api-documentation
-  #   title: Routes API Documentation
-  #   status: published
-  #   content:
-  #     file: "apis/routes/docs/routes-api.md"
+  - type: konnect.api_document
+    api_name: Routes API
+    version: v0
+    slug: routes-api-documentation
+    title: Routes API Documentation
+    status: published
+    content:
+      file: "apis/routes/docs/routes-api.md"
 
-  # - type: konnect.api_publication
-  #   api_name: "Routes API"
-  #   version: v0
-  #   auto_approve_registrations: true
-  #   portal_name: KongAir Portal
-  #   visibility: public
-  #   portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
-  #   auth_strategy_ids:
-  #     - "c18e7b6f-6ad2-46be-9cf1-5c50db2b5d41"
+  - type: konnect.api_publication
+    api_name: "Routes API"
+    version: v0
+    auto_approve_registrations: true
+    portal_name: KongAir Portal
+    visibility: public
+    portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
+    auth_strategy_ids:
+      - "c18e7b6f-6ad2-46be-9cf1-5c50db2b5d41"
 
   # - type: konnect.dashboard
   #   name: kongair-organization-dashboard

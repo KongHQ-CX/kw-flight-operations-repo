@@ -89,30 +89,38 @@ resources:
               col: 0
               row: 0
             size:
-              cols: 6
-              rows: 6
+              cols: 2
+              rows: 1
           definition:
             chart:
-              donut:
-                chart_title: KongAir Requests by API Product
-                type: donut
+              single_value:
+                chart_title: Total service requests (last day)
+                type: single_value
             query:
               api_usage:
                 datasource: api_usage
-                dimensions:
-                  - api_product
-                filters:
-                  - field: status_code_grouped
-                    operator: not_in
-                    value: '["5XX"]'
-                granularity: hourly
+                dimensions: []
+                filters: []
                 metrics:
-                  - kong_latency_p95
-                time_range:
-                  relative:
-                    type: relative
-                    time_range: 7d
-                    tz: Etc/UTC
+                  - request_count
+
+            # query:
+            #   api_usage:
+            #     datasource: api_usage
+            #     dimensions:
+            #       - api_product
+            #     filters:
+            #       - field: status_code_grouped
+            #         operator: not_in
+            #         value: '["5XX"]'
+            #     granularity: hourly
+            #     metrics:
+            #       - kong_latency_p95
+            #     time_range:
+            #       relative:
+            #         type: relative
+            #         time_range: 7d
+            #         tz: Etc/UTC
 # - type: konnect.dashboard
 #   name: kongair-observability
 #   labels:

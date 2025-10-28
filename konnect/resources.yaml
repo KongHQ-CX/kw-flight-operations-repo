@@ -89,18 +89,19 @@ resources:
               col: 0
               row: 0
             size:
-              cols: 2
-              rows: 1
+              cols: 6
+              rows: 2
           definition:
             chart:
-              #top_n:
-              chart_title: Total service requests (last day)
-              type: top_n
+              timeseries_line:
+                chart_title: Requests by gateway service over time
+                type: timeseries_line
+                stacked: false
             query:
               api_usage:
                 datasource: api_usage
-                dimensions: []
-                filters: []
+                dimensions: ["gateway_service", "time"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
                 metrics:
                   - request_count
 

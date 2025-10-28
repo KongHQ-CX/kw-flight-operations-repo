@@ -75,170 +75,170 @@ resources:
   portal_id: 4ccc1394-23aa-4232-9276-aaf419b5810b
   auth_strategy_ids:
   - c18e7b6f-6ad2-46be-9cf1-5c50db2b5d41 
-# - type: konnect.dashboard
-#   name: kongair-observability
-#   labels:
-#     scope: internal
-#     owner: platform
-#   definition:
-#     tiles:
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 0
-#               row: 0
-#             size:
-#               cols: 6
-#               rows: 2
-#           definition:
-#             chart:
-#               timeseries_line:
-#                 chart_title: Requests by gateway service over time
-#                 type: timeseries_line
-#                 stacked: false
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["gateway_service", "time"]
-#                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - request_count
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 0
-#               row: 2
-#             size:
-#               cols: 2
-#               rows: 2
-#           definition:
-#             chart:
-#               horizontal_bar:
-#                 chart_title: Top gateway services by requests
-#                 type: horizontal_bar
-#                 stacked: true
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["gateway_service"]
-#                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - request_count
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 2
-#               row: 3
-#             size:
-#               cols: 2
-#               rows: 2
-#           definition:
-#             chart:
-#               horizontal_bar:
-#                 chart_title: Top routes by requests
-#                 type: horizontal_bar
-#                 stacked: true
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["route"]
-#                 filters: [{"field": "route", "operator": "not_empty"}]
-#                 metrics:
-#                   - request_count
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 0
-#               row: 5
-#             size:
-#               cols: 3
-#               rows: 2
-#           definition:
-#             chart:
-#               donut:
-#                 chart_title: Gateway status codes
-#                 type: donut
-#                 stacked: true
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["status_code"]
-#                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - request_count
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 3
-#               row: 5
-#             size:
-#               cols: 3
-#               rows: 2
-#           definition:
-#             chart:
-#               horizontal_bar:
-#                 chart_title: Top 5xx error sources (last 30 days)
-#                 type: horizontal_bar
-#                 stacked: true
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["gateway_service", "status_code"]
-#                 filters: [{"field": "status_code_grouped","value": '["5XX"]', "operator": "in"},{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - request_count
-#                 time_range:
-#                   type: relative
-#                   time_range: 30d
-#                 granularity: thirtyMinutely
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 0
-#               row: 7
-#             size:
-#               cols: 3
-#               rows: 2
-#           definition:
-#             chart:
-#               timeseries_line:
-#                 chart_title: Average Kong vs upstream latency over time
-#                 type: timeseries_line
-#                 stacked: false
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["time"]
-#                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - upstream_latency_average
-#                   - kong_latency_average
-#       - chart:
-#           type: chart
-#           layout:
-#             position:
-#               col: 4
-#               row: 7
-#             size:
-#               cols: 3
-#               rows: 2
-#           definition:
-#             chart:
-#               horizontal_bar:
-#                 chart_title: Average response time by gateway service
-#                 type: horizontal_bar
-#                 stacked: true
-#             query:
-#               api_usage:
-#                 datasource: api_usage
-#                 dimensions: ["gateway_service"]
-#                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
-#                 metrics:
-#                   - upstream_latency_average
+- type: konnect.dashboard
+  name: kongair-observability
+  labels:
+    scope: internal
+    owner: platform
+  definition:
+    tiles:
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 0
+            size:
+              cols: 6
+              rows: 2
+          definition:
+            chart:
+              timeseries_line:
+                chart_title: Requests by gateway service over time
+                type: timeseries_line
+                stacked: false
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service", "time"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 2
+            size:
+              cols: 2
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Top gateway services by requests
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 2
+              row: 3
+            size:
+              cols: 2
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Top routes by requests
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["route"]
+                filters: [{"field": "route", "operator": "not_empty"}]
+                metrics:
+                  - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 5
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              donut:
+                chart_title: Gateway status codes
+                type: donut
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["status_code"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 3
+              row: 5
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Top 5xx error sources (last 30 days)
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service", "status_code"]
+                filters: [{"field": "status_code_grouped","value": '["5XX"]', "operator": "in"},{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
+                time_range:
+                  type: relative
+                  time_range: 30d
+                granularity: thirtyMinutely
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 7
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              timeseries_line:
+                chart_title: Average Kong vs upstream latency over time
+                type: timeseries_line
+                stacked: false
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["time"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - upstream_latency_average
+                  - kong_latency_average
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 4
+              row: 7
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Average response time by gateway service
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - upstream_latency_average
 

@@ -241,45 +241,7 @@ resources:
                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
                 metrics:
                   - upstream_latency_average
-      - chart:
-          type: chart
-          layout:
-            position:
-              col: 0
-              row: 9
-            size:
-              cols: 3
-              rows: 2
-          definition:
-            chart:
-              timeseries_line:
-                chart_title: Failed authentication attempts over time
-                type: timeseries_line
-                stacked: false
-            query:
-              api_usage:
-                datasource: api_usage
-                dimensions: ["status_code","time"]
-                filters: [{"field": "status_code","value": "401", "operator": "in"}]
-                metrics:
-                  - request_count
-            # query:
-            #   api_usage:
-            #     datasource: api_usage
-            #     dimensions:
-            #       - api_product
-            #     filters:
-            #       - field: status_code_grouped
-            #         operator: not_in
-            #         value: '["5XX"]'
-            #     granularity: hourly
-            #     metrics:
-            #       - kong_latency_p95
-            #     time_range:
-            #       relative:
-            #         type: relative
-            #         time_range: 7d
-            #         tz: Etc/UTC
+
 # - type: konnect.dashboard
 #   name: kongair-observability
 #   labels:

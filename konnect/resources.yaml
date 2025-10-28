@@ -93,9 +93,9 @@ resources:
               rows: 1
           definition:
             chart:
-              single_value:
+              top_n:
                 chart_title: Total service requests (last day)
-                type: single_value
+                type: top_n
             query:
               api_usage:
                 datasource: api_usage

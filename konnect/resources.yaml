@@ -260,7 +260,7 @@ resources:
               api_usage:
                 datasource: api_usage
                 dimensions: ["status_code","time"]
-                filters: [{"field": "status_code","value": ["401"], "operator": "in"}]
+                filters: [{"field": "status_code","value": "401", "operator": "in"}]
                 metrics:
                   - request_count
             # query:

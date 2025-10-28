@@ -196,6 +196,29 @@ resources:
                   type: relative
                   time_range: 30d
                 granularity: thirtyMinutely
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 7
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              timeseries_line:
+                chart_title: Average Kong vs upstream latency over time
+                type: timeseries_line
+                stacked: false
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["time"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - upstream_latency_average
+                  - kong_latency_average
             # query:
             #   api_usage:
             #     datasource: api_usage

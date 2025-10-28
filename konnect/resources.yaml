@@ -148,6 +148,28 @@ resources:
                 filters: [{"field": "route", "operator": "not_empty"}]
                 metrics:
                   - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 5
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              donut:
+                chart_title: Gateway status codes
+                type: donut
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["status_code"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
 
             # query:
             #   api_usage:

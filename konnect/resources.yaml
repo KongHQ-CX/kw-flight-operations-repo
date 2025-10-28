@@ -104,6 +104,28 @@ resources:
                 filters: [{"field": "gateway_service", "operator": "not_empty"}]
                 metrics:
                   - request_count
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 0
+              row: 2
+            size:
+              cols: 2
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Top gateway services by requests
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - request_count
 
             # query:
             #   api_usage:

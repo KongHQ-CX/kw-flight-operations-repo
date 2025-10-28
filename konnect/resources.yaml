@@ -219,6 +219,28 @@ resources:
                 metrics:
                   - upstream_latency_average
                   - kong_latency_average
+      - chart:
+          type: chart
+          layout:
+            position:
+              col: 4
+              row: 7
+            size:
+              cols: 3
+              rows: 2
+          definition:
+            chart:
+              horizontal_bar:
+                chart_title: Average response time by gateway service
+                type: horizontal_bar
+                stacked: true
+            query:
+              api_usage:
+                datasource: api_usage
+                dimensions: ["gateway_service"]
+                filters: [{"field": "gateway_service", "operator": "not_empty"}]
+                metrics:
+                  - upstream_latency_average
             # query:
             #   api_usage:
             #     datasource: api_usage
